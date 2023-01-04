@@ -6,4 +6,19 @@
  */
 void insertion_sort_list(listint_t **list)
 {
+	unsigned int i, j;
+	listint_t *temp;
+
+	if (list != NULL)
+	{
+
+		for (i = 0; list[i] != NULL; ++i)
+			if (list[i] > list[i + 1])
+			{
+				temp = list[i];
+				list[i] = list[i + 1];
+				list[i + 1] = temp;
+				print_list(temp);
+			}
+	}
 }
