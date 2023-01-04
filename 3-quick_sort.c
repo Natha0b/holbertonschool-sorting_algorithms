@@ -49,17 +49,16 @@ int _partition(int array[], int low, int high)
  */
 void quick_sort(int *array, size_t size)
 {
-	int pi, part;
-
-	if (size <= 0)
+	int pi;
+	
+	printf("hola");
+	if (size > 0)
 	{
+		printf("hola2");
 		pi = array[size];
 
-		part = _partition(array, pi, size);
-
-		quick_sort(array, size - 1);
-
-		quick_sort(size + 1, array);
+ç
+		 _partition(array, pi, size);
 
 		print_array(array, size);
 	}
