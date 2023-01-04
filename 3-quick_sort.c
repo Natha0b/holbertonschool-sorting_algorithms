@@ -1,47 +1,70 @@
 #include "sort.h"
 
 /**
- * quick_sort - function that sorts an array of integers in ascending order
- * @array: variable array
- * @size: variable size
+ * _swapnode - swaps two values in an array
+ * @array: data to sort
+ * @i: first value
+ * @j: second value
+ * @size: size of data
  */
-
-void swap(int *a, int *b)
+void _swapnode(int *array, int i, int j, int size)
 {
-	int t = *a;
-	*a = *b;
-	*b = t;
+	int tmp;
+
+	if (array[i] != array[j])
+	{
+		tmp = array[i];
+		array[i] = array[j];
+		array[j] = tmp;
+		print_array(array, size);
+	}
 }
 
 /**
- * quick_sort - function that sorts an array of integers in ascending order
- * @array: variable array
- * @size: variable size
+ * _partition - sorts a partition of data in relation to a pivot
+ * @array: variable integer string
+ * @low: variable integer
+ * @high: variable integer
+ * @size: size of data
+ * Return: return integer
  */
-
-int _partition(int array[], int low, int high)
+int _partition(int *array, int low, int high, size_t size)
 {
 
-	int pivot = array[high];
+	int i = low, j, pivot = array[high];
 
-	int i = (low - 1);
-
-	for (int j = low; j < high; j++)
+	for (j = low; j <= high; j++)
 	{
-		if (array[j] <= pivot)
+		if (array[j] < pivot)
 		{
-
+			_swap_node(array, i, j, size);
 			i++;
-
-			swap(&array[i], &array[j]);
 		}
 	}
+	_swap_node(array, i, high, size);
 
-	swap(&array[i + 1], &array[high]);
-
-	return (i + 1);
+	return (i);
 }
 
+/**
+ * quicksort -  sorts an array of integers in ascending order using the
+ * Quick sort algorithm Lomuto partition scheme
+ * @array: data to sort
+ * @low: variable integer
+ * @high: variable integer
+ * @size: size of data
+ */
+void quicksort(int *array, int low, int high, size_t size)
+{
+	int p;
+
+	if (low < high)
+	{
+		p = partition(array, low, high, size);
+		quicksort(array, low, p - 1, size);
+		quicksort(array, p + 1, high, size);
+	}
+}
 /**
  * quick_sort - function that sorts an array of integers in ascending order
  * @array: variable array
@@ -49,17 +72,9 @@ int _partition(int array[], int low, int high)
  */
 void quick_sort(int *array, size_t size)
 {
-	int pi;
-	
-	printf("hola");
-	if (size > 0)
-	{
-		printf("hola2");
-		pi = array[size];
 
-ç
-		 _partition(array, pi, size);
+	if (size < 2)
+		return;
 
-		print_array(array, size);
-	}
+	quicksort(array, 0, size - 1, size);
 }
