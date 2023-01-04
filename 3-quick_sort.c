@@ -37,11 +37,11 @@ int _partition(int *array, int low, int high, size_t size)
 	{
 		if (array[j] < pivot)
 		{
-			_swap_node(array, i, j, size);
+			_swapnode(array, i, j, size);
 			i++;
 		}
 	}
-	_swap_node(array, i, high, size);
+	_swapnode(array, i, high, size);
 
 	return (i);
 }
@@ -60,7 +60,7 @@ void quicksort(int *array, int low, int high, size_t size)
 
 	if (low < high)
 	{
-		p = partition(array, low, high, size);
+		p = _partition(array, low, high, size);
 		quicksort(array, low, p - 1, size);
 		quicksort(array, p + 1, high, size);
 	}
